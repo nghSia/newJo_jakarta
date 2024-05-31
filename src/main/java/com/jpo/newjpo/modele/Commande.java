@@ -1,10 +1,9 @@
 package com.jpo.newjpo.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jpo.newjpo.enums.TypeCommande;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -32,13 +31,20 @@ public class Commande {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private User user;
 
     @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIgnore
     private Set<Billet> billets = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "discount_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Discount discount;
 
     public Commande() {}

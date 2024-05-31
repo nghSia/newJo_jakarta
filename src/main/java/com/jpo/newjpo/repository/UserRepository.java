@@ -15,5 +15,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User save(User user);
 
-    Optional<Object> findFirstByEmail(String pEmail);
+    Optional<User> findFirstByEmail(String email);
 }

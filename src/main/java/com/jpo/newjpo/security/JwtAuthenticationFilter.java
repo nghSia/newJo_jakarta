@@ -20,6 +20,7 @@ import java.io.IOException;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final HandlerExceptionResolver handlerExceptionResolver;
+
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
 
@@ -40,12 +41,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
-
-        // Skip JWT validation for auth endpoints
-        if (request.getServletPath().startsWith("/auth")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);

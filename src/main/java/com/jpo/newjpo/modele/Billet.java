@@ -1,9 +1,7 @@
 package com.jpo.newjpo.modele;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.AllArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "billet")
@@ -23,5 +21,13 @@ public class Billet {
     @JoinColumn(name = "commande_id")
     private Commande commande;
 
-    public Billet() {}
+    @ManyToOne
+    @JoinColumn(name = "epreuve_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Epreuve epreuve;
+
+    public Billet() {
+
+    }
 }

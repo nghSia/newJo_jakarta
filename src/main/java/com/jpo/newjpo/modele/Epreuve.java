@@ -1,8 +1,11 @@
 package com.jpo.newjpo.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jpo.newjpo.enums.EpreuveStatus;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,8 +28,13 @@ public class Epreuve {
 
     @ManyToOne
     @JoinColumn(name = "stade_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Stade stade;
 
-    @OneToMany(mappedBy = "epreuve")
+    @OneToMany(mappedBy = "epreuve", cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIgnore
     private Set<Billet> billets = new HashSet<>();
 }

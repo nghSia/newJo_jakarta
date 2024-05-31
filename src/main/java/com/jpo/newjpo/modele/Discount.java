@@ -1,9 +1,8 @@
 package com.jpo.newjpo.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.AllArgsConstructor;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +25,9 @@ public class Discount {
     private Float discountVal;
 
     @OneToMany(mappedBy = "discount")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIgnore
     private Set<Commande> commandes = new HashSet<>();
 
     public Discount() {}
