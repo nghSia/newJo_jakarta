@@ -27,3 +27,22 @@
     - CRUD commande
     - Authentification
     - pas de gestion des roles avec securite
+
+
+ #JSON complexe pour creer commande : 
+    {
+      "userId": 1,
+      "type": "GIFT",
+      "discountid": 1,
+      "billets": [
+        {
+          "billetId": 1,
+          "quantity": 2
+        },
+        {
+          "billetId": 2,
+          "quantity": 3
+        }
+      ]
+    }
+     
